@@ -2,9 +2,8 @@
 const axios = require("axios");
 
 exports.handler = async (event) => {
-  const VERIFY_TOKEN = "echo_123";
-  const WHATSAPP_TOKEN =
-    "EABdYtRQKxqIBAJN2ThFiUpZB4v1tlBe34j0zO85TJQ3ymj58zgRZApXsxzCMAHKDNE4u6na227ZBtPX8VL8GLJ8PpqqHbvxU45DSPZAjT9m8n0G9TteZAs6Pgr4Uw2H2OzHPEwSkG1ZC76rvDHCIYPLFFAuP2FlBXDxHfRL1gSEyzkamC0BZCZBKZA08gGUJO4z3xm6SnsAfmZAQZDZD";
+  const VERIFY_TOKEN = 'YOUR_VERIFY_TOKEN';
+  const WHATSAPP_TOKEN = 'YOUR_AUTHENTICATION_TOKEN'
 
   let response;
   if (event?.requestContext?.http?.method === "GET") {
