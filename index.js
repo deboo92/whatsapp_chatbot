@@ -87,11 +87,11 @@ exports.handler = async (event) => {
                       messageinfo[1]
                     );
                   } else if (messageinfo[0] === "cat") {
-                    await sendMultipleProductMessage(
+                    await sendReply(
                       phone_number_id,
                       WHATSAPP_TOKEN,
                       from,
-                      messageinfo[2]
+                      `${messageinfo[2]} and ${messageinfo[3]}`
                     );
                   }
                   const responseBody = "Done";
@@ -138,39 +138,39 @@ exports.handler = async (event) => {
   return response;
 };
 
-// const sendReply = async (
-//   phone_number_id,
-//   whatsapp_token,
-//   to,
-//   reply_message
-// ) => {
-//   try {
-//     console.log(phone_number_id, to, reply_message);
-//     let data = JSON.stringify({
-//       messaging_product: "whatsapp",
-//       to: to,
-//       type: "text",
-//       text: {
-//         body: reply_message,
-//       },
-//     });
+const sendReply = async (
+  phone_number_id,
+  whatsapp_token,
+  to,
+  reply_message
+) => {
+  try {
+    console.log(phone_number_id, to, reply_message);
+    let data = JSON.stringify({
+      messaging_product: "whatsapp",
+      to: to,
+      type: "text",
+      text: {
+        body: `Thank you for checking the bot Your City & Cat are ${reply_message}`.,
+      },
+    });
 
-//     let config = {
-//       method: "post",
-//       maxBodyLength: Infinity,
-//       url: `https://graph.facebook.com/v17.0/${phone_number_id}/messages`,
-//       headers: {
-//         Authorization: `Bearer ${whatsapp_token}`,
-//         "Content-Type": "application/json",
-//       },
-//       data: data,
-//     };
-//     const response = await axios.request(config);
-//     console.log(response);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
+    let config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: `https://graph.facebook.com/v17.0/${phone_number_id}/messages`,
+      headers: {
+        Authorization: `Bearer ${whatsapp_token}`,
+        "Content-Type": "application/json",
+      },
+      data: data,
+    };
+    const response = await axios.request(config);
+    console.log(response);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 const sendCityInteractiveMessage = async (
   phone_number_id,
@@ -185,7 +185,7 @@ const sendCityInteractiveMessage = async (
       interactive: {
         type: "list",
         body: {
-          text: "Welcome to Jewellery Store, Please select a city from the options",
+          text: "Welcome to Demo Bot, Please select a city from the options",
         },
         action: {
           button: "Choose a City",
